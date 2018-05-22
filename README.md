@@ -8,7 +8,7 @@ You can just clone this repository and open it in Android Studio.
 For any questions, feedback, and bug reports, please use the [Github Issues](https://github.com/masterfermin02/ViciMobManager/issues).
 
 ## Credits
-Created by [Omid Alemi](https://masterfermin02.github.io/profile)
+Created by [Fermin Perdomo](https://masterfermin02.github.io/profile)
 
 ## Contributions
 Contributions are welcome. Please make a pull request.
