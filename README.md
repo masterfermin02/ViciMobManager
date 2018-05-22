@@ -9,6 +9,7 @@ For any questions, feedback, and bug reports, please use the [Github Issues](htt
 
 ## Credits
 Created by [Fermin Perdomo](https://masterfermin02.github.io/profile)
+Thanks to [Viciexperts](https://viciexperts.com/)
 
 ## Contributions
 Contributions are welcome. Please make a pull request.
