@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Campaigns"
+            android:label="@string/title_activity_campaigns"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Config"></activity>
     </application>
 
 </manifest>
