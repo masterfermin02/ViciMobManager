@@ -3,4 +3,8 @@
     <string name="campaigns">Campaigns</string>
     <string name="config">Config</string>
     <string name="title_activity_campaigns">Campaigns</string>
+    <string name="vicidial_url">Server ip or domain</string>
+    <string name="vicidial_folder">Admin folder</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
 </resources>

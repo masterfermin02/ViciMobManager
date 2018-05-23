@@ -15,10 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Title" />
+            android:text="@string/vicidial_url" />
 
         <EditText
-            android:id="@+id/adsense_title"
+            android:id="@+id/vicidial_url"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,10 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Details" />
+            android:text="@string/vicidial_folder" />
 
         <EditText
-            android:id="@+id/adsense_details"
+            android:id="@+id/vicidial_folder"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -44,10 +44,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Condiction" />
+            android:text="@string/user" />
 
         <EditText
-            android:id="@+id/adsense_condiction"
+            android:id="@+id/config_user"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,41 +60,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Category" />
+            android:text="@string/password" />
 
-        <Spinner
-            android:id="@+id/adsense_category_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Price" />
 
         <EditText
-            android:id="@+id/adsense_price"
+            android:id="@+id/config_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Location" />
-
-        <EditText
-            android:id="@+id/adsense_location"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:text="" />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -104,7 +79,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="adsenseSave"
                 app:srcCompat="@android:drawable/ic_menu_save" />
 
             <ImageButton
@@ -112,7 +86,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="adsenseClean"
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
         </LinearLayout>
 
