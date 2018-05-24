@@ -16,12 +16,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onCampaignsClick"
             android:text="@string/campaigns" />
         <Button
             android:id="@+id/register_publicador"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onConfigClick"
             android:text="@string/config" />
 
     </LinearLayout>

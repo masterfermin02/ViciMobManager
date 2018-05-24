@@ -20,7 +20,7 @@
             android:name=".Campaigns"
             android:label="@string/title_activity_campaigns"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Config"></activity>
+        <activity android:name=".ConfigActivity"></activity>
     </application>
 
 </manifest>

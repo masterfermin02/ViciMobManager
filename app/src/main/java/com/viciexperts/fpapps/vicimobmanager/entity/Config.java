@@ -9,21 +9,29 @@ import java.io.Serializable;
 
 public class Config implements Serializable {
 
+    protected int id;
     protected String vicidialUrl;
     protected String vicidialFolder;
     protected String user;
     protected String password;
 
+
     private Config(ConfigBuilder builder){
+        this.id = builder.id;
         this.vicidialUrl = builder.vicidialUrl;
         this.vicidialFolder = builder.vicidialFolder;
         this.user = builder.user;
         this.password = builder.password;
     }
 
+    public Integer getId() {
+        return this.id;
+    }
+
     public String getVicidialUrl() {
         return this.vicidialUrl;
     }
+
 
 
     public String getVicidialFolder() {
@@ -42,6 +50,7 @@ public class Config implements Serializable {
     @Override
     public String toString() {
         return "Config{" +
+                "id=" + id +
                 "vicidialUrl=" + vicidialUrl +
                 ", vicidialForlder='" + vicidialFolder + '\'' +
                 ", user='" + user + '\'' +
@@ -50,6 +59,7 @@ public class Config implements Serializable {
     }
 
     public static class ConfigBuilder {
+        private static int id;
         private static String vicidialUrl;
         private static String vicidialFolder;
         private static String user;
@@ -65,6 +75,11 @@ public class Config implements Serializable {
         public ConfigBuilder()
         {
 
+        }
+
+        public ConfigBuilder id(int id){
+            this.id = id;
+            return this;
         }
 
         public ConfigBuilder vicidialUrl(String vicidialUrl){

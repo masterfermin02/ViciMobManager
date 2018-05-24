@@ -61,14 +61,11 @@ public class ConfigSqlRepository implements Repository<Config> {
         // TODO to be implemented
         final SQLiteDatabase database = openHelper.getWritableDatabase();
         database.beginTransaction();
-        String[] parameters={item.getVicidialUrl(), item.getVicidialFolder(), item.getUser(), item.getPassword()};
+        String[] parameters={item.getId().toString()};
 
         try {
             final ContentValues contentValues = toContentValuesMapper.map(item);
-            database.update(ConfigSchema.TABLE, contentValues,ConfigSchema.VICIDIAL_URL +" = ? "
-                    +ConfigSchema.VICIDIAL_FOLDER +" = ?"
-                    +ConfigSchema.USER +" = ?"
-                    +ConfigSchema.PASSWORD +" = ?",parameters);
+            database.update(ConfigSchema.TABLE, contentValues,ConfigSchema.ID +" = ? ",parameters);
             database.setTransactionSuccessful();
         } finally {
             database.endTransaction();
@@ -90,13 +87,10 @@ public class ConfigSqlRepository implements Repository<Config> {
         // TODO to be implemented
         final SQLiteDatabase database = openHelper.getWritableDatabase();
         database.beginTransaction();
-        String[] parameters={item.getVicidialUrl(), item.getVicidialFolder(), item.getUser(), item.getPassword()};
+        String[] parameters={item.getId().toString()};
 
         try {
-            database.delete(ConfigSchema.TABLE, ConfigSchema.VICIDIAL_URL +" = ? "
-                    +ConfigSchema.VICIDIAL_FOLDER +" = ?"
-                    +ConfigSchema.USER +" = ?"
-                    +ConfigSchema.PASSWORD +" = ?",parameters);
+            database.delete(ConfigSchema.TABLE, ConfigSchema.ID +" = ? ",parameters);
             database.setTransactionSuccessful();
         } finally {
             database.endTransaction();
