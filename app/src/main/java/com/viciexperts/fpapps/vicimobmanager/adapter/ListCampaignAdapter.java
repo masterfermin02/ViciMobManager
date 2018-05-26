@@ -58,7 +58,7 @@ public class ListCampaignAdapter extends BaseAdapter {
         Campaign campaign = campaigns.get(i);
 
         TextView name = (TextView) view.findViewById(R.id.item_campaign_name);
-        name.setText(campaign.getName());
+        name.setText(campaign.getName() + ' ' + campaign.getDescription());
         return view;
     }
 

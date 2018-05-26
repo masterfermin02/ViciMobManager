@@ -13,6 +13,7 @@ import com.viciexperts.fpapps.vicimobmanager.entity.Campaign;
 import com.viciexperts.fpapps.vicimobmanager.helpers.DbHelpers;
 import com.viciexperts.fpapps.vicimobmanager.repository.campaign.CampaignSqlRepository;
 import com.viciexperts.fpapps.vicimobmanager.repository.campaign.specifications.AllCampaignSpecification;
+import com.viciexperts.fpapps.vicimobmanager.request.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +23,23 @@ public class CampaignActivity extends AppCompatActivity {
     private CampaignSqlRepository repository;
     private ListView listView;
     private ListCampaignAdapter listCampaignAdapter;
+    private CampaignRequest campaignRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campaign);
 
+
         listView = (ListView) findViewById(R.id.listViewCamapigns);
 
         repository = new CampaignSqlRepository(DbHelpers.getDbConnection(this));
 
-        List<Campaign> listViewCampaigns =  new ArrayList<>(); // repository.query(new AllCampaignSpecification());
-        listViewCampaigns.add(new Campaign.CampaignBuilder().setName("campaign 1").build());
-        listViewCampaigns.add(new Campaign.CampaignBuilder().setName("campaign 2").build());
-        listViewCampaigns.add(new Campaign.CampaignBuilder().setName("campaign 3").build());
-        listViewCampaigns.add(new Campaign.CampaignBuilder().setName("campaign 4").build());
+
+        List<Campaign> listViewCampaigns =  repository.query(new AllCampaignSpecification());
         listCampaignAdapter = new ListCampaignAdapter(listViewCampaigns, this);
+        campaignRequest = new CampaignRequest.Builder("http://vicibeta.viciexperts.com/suite_166/vicidial/non_agent_api_beta.php?source=test&user=viciexperts&pass=Jaguarpinto81&function=get_campaign&json=1",repository,listCampaignAdapter).biuld();
+        campaignRequest.getRetrieveFeedTask().execute();
         listView.setAdapter(listCampaignAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
