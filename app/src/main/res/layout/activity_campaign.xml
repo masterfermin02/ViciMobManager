@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical"
-    tools:context=".Campaigns">
+    tools:context=".CampaignActivity">
+
     <ListView
-        android:id="@+id/listViewCategories"
+        android:id="@+id/listViewCamapigns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top"

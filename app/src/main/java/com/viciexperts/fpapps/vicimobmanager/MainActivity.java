@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCampaignsClick(View view)
     {
         // Do something in response to button
-        Intent intent = new Intent(this, Campaigns.class);
+        Intent intent = new Intent(this, CampaignActivity.class);
         startActivity(intent);
 
 

@@ -1,5 +1,6 @@
 package com.viciexperts.fpapps.vicimobmanager;
 
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,8 @@ import android.widget.EditText;
 import com.viciexperts.fpapps.vicimobmanager.entity.Config;
 import com.viciexperts.fpapps.vicimobmanager.helpers.DbHelpers;
 import com.viciexperts.fpapps.vicimobmanager.repository.Config.ConfigSqlRepository;
-import com.viciexperts.fpapps.vicimobmanager.repository.Config.specifications.AllConfigSpecification;
 import com.viciexperts.fpapps.vicimobmanager.repository.Config.specifications.ConfigByIdSpecification;
 
-import java.util.List;
 
 public class ConfigActivity extends AppCompatActivity {
 
@@ -72,6 +71,6 @@ public class ConfigActivity extends AppCompatActivity {
 
     public void clean(View v)
     {
-
+        this.finish();
     }
 }

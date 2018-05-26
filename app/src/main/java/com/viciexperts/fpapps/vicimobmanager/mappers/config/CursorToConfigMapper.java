@@ -16,7 +16,6 @@ public class CursorToConfigMapper implements Mapper<Cursor,Config> {
 
     public Config map(Cursor cursor)
     {
-        Log.i("guar usuario", "user id "+cursor.getInt(cursor.getColumnIndex(ConfigSchema.ID))+"");
 
         return new Config
                 .ConfigBuilder(cursor.getString(cursor.getColumnIndex(ConfigSchema.VICIDIAL_URL)),
