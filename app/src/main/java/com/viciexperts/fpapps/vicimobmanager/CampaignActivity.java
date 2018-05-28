@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import com.viciexperts.fpapps.vicimobmanager.adapter.ListCampaignAdapter;
 import com.viciexperts.fpapps.vicimobmanager.entity.Campaign;
+import com.viciexperts.fpapps.vicimobmanager.entity.Config;
 import com.viciexperts.fpapps.vicimobmanager.helpers.DbHelpers;
+import com.viciexperts.fpapps.vicimobmanager.repository.Config.ConfigSqlRepository;
+import com.viciexperts.fpapps.vicimobmanager.repository.Config.specifications.ConfigByIdSpecification;
 import com.viciexperts.fpapps.vicimobmanager.repository.campaign.CampaignSqlRepository;
 import com.viciexperts.fpapps.vicimobmanager.repository.campaign.specifications.AllCampaignSpecification;
 import com.viciexperts.fpapps.vicimobmanager.request.*;
@@ -37,8 +40,12 @@ public class CampaignActivity extends AppCompatActivity {
 
 
         List<Campaign> listViewCampaigns =  repository.query(new AllCampaignSpecification());
+        ConfigSqlRepository configSqlRepository = new ConfigSqlRepository(DbHelpers.getDbConnection(this));
+        Config config = configSqlRepository.get(new ConfigByIdSpecification(1));
         listCampaignAdapter = new ListCampaignAdapter(listViewCampaigns, this);
-        campaignRequest = new CampaignRequest.Builder("http://vicibeta.viciexperts.com/suite_166/vicidial/non_agent_api_beta.php?source=test&user=viciexperts&pass=Jaguarpinto81&function=get_campaign&json=1",repository,listCampaignAdapter).biuld();
+        campaignRequest = new CampaignRequest.Builder("http://"+config.getVicidialUrl()+"/"+config.getVicidialFolder()+"/non_agent_api_beta.php?source=test&user="+config.getUser()+"&pass="+config.getPassword()+"&function=get_campaign&json=1",
+                repository,listView,
+                this).biuld();
         campaignRequest.getRetrieveFeedTask().execute();
         listView.setAdapter(listCampaignAdapter);
 

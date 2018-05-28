@@ -1,6 +1,8 @@
 package com.viciexperts.fpapps.vicimobmanager.request;
 
+import android.app.Activity;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.viciexperts.fpapps.vicimobmanager.adapter.ListCampaignAdapter;
 import com.viciexperts.fpapps.vicimobmanager.entity.Campaign;
@@ -27,6 +29,8 @@ public class CampaignRequest implements CampaignResponse {
     private final Mapper<JSONObject, Campaign> toCampaignMapper;
     private Repository repository;
     private ListCampaignAdapter listCampaignAdapter;
+    private ListView listView;
+    private Activity context;
 
 
     public CampaignRequest(Builder builder)
@@ -37,6 +41,8 @@ public class CampaignRequest implements CampaignResponse {
         toCampaignMapper = new JSONObjectToCampaignMapper();
         this.repository = builder.repository;
         this.listCampaignAdapter = builder.listCampaignAdapter;
+        this.listView = builder.listView;
+        this.context = builder.context;
 
     }
 
@@ -60,8 +66,7 @@ public class CampaignRequest implements CampaignResponse {
                     campaigns.add(toCampaignMapper.map(jsonCampaigns.getJSONObject(i)));
                 }
                 repository.add(campaigns);
-                listCampaignAdapter.setCampaigns(campaigns);
-                listCampaignAdapter.notifyDataSetChanged();
+                listView.setAdapter(new ListCampaignAdapter(campaigns, this.context));
             }catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -75,12 +80,24 @@ public class CampaignRequest implements CampaignResponse {
         private static String apiUrl;
         private static Repository repository;
         private static ListCampaignAdapter listCampaignAdapter;
+        private static ListView listView;
+        private static Activity context;
 
-        public  Builder(String apiUrl, Repository repository, ListCampaignAdapter listCampaignAdapter)
+        public  Builder(String apiUrl, Repository repository, ListCampaignAdapter listCampaignAdapter, Activity context)
         {
             this.apiUrl = apiUrl;
             this.repository = repository;
             this.listCampaignAdapter = listCampaignAdapter;
+            this.context = context;
+
+        }
+
+        public  Builder(String apiUrl, Repository repository, ListView listView, Activity context)
+        {
+            this.apiUrl = apiUrl;
+            this.repository = repository;
+            this.listView = listView;
+            this.context = context;
 
         }
 
