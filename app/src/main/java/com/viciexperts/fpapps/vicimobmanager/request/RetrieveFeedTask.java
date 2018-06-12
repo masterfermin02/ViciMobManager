@@ -14,14 +14,14 @@ public class RetrieveFeedTask extends AsyncTask<Void, Void, String> {
     private Exception exception;
     private String API_URL = "";
     private String API_KEY;
-    private CampaignResponse callBack;
+    private CampaignRequest.CampaignResponse callBack;
 
     public RetrieveFeedTask(String API_URL)
     {
         this.API_URL = API_URL;
     }
 
-    public RetrieveFeedTask(String API_URL, CampaignResponse callBack)
+    public RetrieveFeedTask(String API_URL, CampaignRequest.CampaignResponse callBack)
     {
         this.API_URL = API_URL;
         this.callBack = callBack;

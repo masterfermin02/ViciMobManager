@@ -7,4 +7,6 @@
     <string name="vicidial_folder">Admin folder</string>
     <string name="user">User</string>
     <string name="password">Password</string>
+    <string name="save">Saved ...!</string>
+    <string name="update">Updated ...!</string>
 </resources>

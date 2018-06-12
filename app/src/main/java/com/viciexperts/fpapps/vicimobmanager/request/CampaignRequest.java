@@ -21,7 +21,7 @@ import org.json.JSONTokener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CampaignRequest implements CampaignResponse {
+public class CampaignRequest {
 
     protected RetrieveFeedTask retrieveFeedTask;
     protected String apiUrl;
@@ -36,7 +36,7 @@ public class CampaignRequest implements CampaignResponse {
     public CampaignRequest(Builder builder)
     {
         this.apiUrl = builder.apiUrl;
-        this.retrieveFeedTask = new RetrieveFeedTask(apiUrl, this);
+        this.retrieveFeedTask = new RetrieveFeedTask(apiUrl, builder.campaignResponse);
         toJSONObjectMapper = new StringToJSONObjectMapper();
         toCampaignMapper = new JSONObjectToCampaignMapper();
         this.repository = builder.repository;
@@ -51,28 +51,10 @@ public class CampaignRequest implements CampaignResponse {
         return  retrieveFeedTask;
     }
 
-    public void callBack(String response)
-    {
-        if(response != null)
-        {
+    public interface CampaignResponse {
 
-           JSONObject jsonObject = toJSONObjectMapper.map(response);
+        public void callBack(String response);
 
-            final List<Campaign> campaigns = new ArrayList<>();
-            try{
-                JSONArray jsonCampaigns = jsonObject.getJSONArray("campaign");
-                repository.remove(new DeleteAllCampaignSpecification());
-                for (int i = 0; i < jsonCampaigns.length(); i++) {
-                    campaigns.add(toCampaignMapper.map(jsonCampaigns.getJSONObject(i)));
-                }
-                repository.add(campaigns);
-                listView.setAdapter(new ListCampaignAdapter(campaigns, this.context));
-            }catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Log.i("INFO", "response : "+response);
     }
 
     public static class Builder {
@@ -82,6 +64,7 @@ public class CampaignRequest implements CampaignResponse {
         private static ListCampaignAdapter listCampaignAdapter;
         private static ListView listView;
         private static Activity context;
+        private static CampaignResponse campaignResponse;
 
         public  Builder(String apiUrl, Repository repository, ListCampaignAdapter listCampaignAdapter, Activity context)
         {
@@ -99,6 +82,22 @@ public class CampaignRequest implements CampaignResponse {
             this.listView = listView;
             this.context = context;
 
+        }
+
+        public  Builder(String apiUrl, Repository repository, ListView listView, Activity context,CampaignResponse campaignResponse)
+        {
+            this.apiUrl = apiUrl;
+            this.repository = repository;
+            this.listView = listView;
+            this.context = context;
+            this.campaignResponse = campaignResponse;
+
+        }
+
+        public  Builder(String apiUrl, CampaignResponse campaignResponse)
+        {
+            this.apiUrl = apiUrl;
+            this.campaignResponse = campaignResponse;
         }
 
         public Builder()
@@ -120,6 +119,11 @@ public class CampaignRequest implements CampaignResponse {
         {
             this.listCampaignAdapter = listCampaignAdapter;
 
+        }
+
+        public void setCampaignResponse(CampaignResponse campaignResponse)
+        {
+           this.campaignResponse = campaignResponse;
         }
 
         public CampaignRequest biuld()

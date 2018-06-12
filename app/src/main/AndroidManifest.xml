@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.viciexperts.fpapps.vicimobmanager">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ConfigActivity" />
-        <activity android:name=".CampaignActivity"></activity>
+        <activity android:name=".CampaignActivity" />
+        <activity android:name=".views.campaigns.CampaignFormActivity"></activity>
     </application>
 
 </manifest>

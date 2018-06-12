@@ -29,8 +29,16 @@ public class ListCampaignAdapter extends BaseAdapter {
 
     }
 
-    public void setCampaigns(List<Campaign> categories){
+    public ListCampaignAdapter(Activity context){
+        this.context = context;
+
+    }
+
+    public void setCampaigns(List<Campaign> campaigns){
         this.campaigns = campaigns;
+
+        //Triggers the list update
+        notifyDataSetChanged();
     }
 
     @Override

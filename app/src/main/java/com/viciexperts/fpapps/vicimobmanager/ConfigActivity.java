@@ -1,11 +1,13 @@
 package com.viciexperts.fpapps.vicimobmanager;
 
 
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.viciexperts.fpapps.vicimobmanager.entity.Config;
 import com.viciexperts.fpapps.vicimobmanager.helpers.DbHelpers;
@@ -21,20 +23,25 @@ public class ConfigActivity extends AppCompatActivity {
     private EditText vicidialFolder;
     private EditText user;
     private EditText password;
-
+    private Resources res;
+    private String saved;
+    private String updated;
+    private String msj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
+        res = getResources();
+        saved = res.getString(R.string.save);
+        updated = res.getString(R.string.update);
         repository = new ConfigSqlRepository(DbHelpers.getDbConnection(this));
         config = repository.get(new ConfigByIdSpecification(1));
         vicidialUrl = (EditText) findViewById(R.id.vicidial_url);
         vicidialFolder = (EditText) findViewById(R.id.vicidial_folder);
         user = (EditText) findViewById(R.id.config_user);
         password = (EditText) findViewById(R.id.config_password);
-        Log.i("guar usuario",config.toString());
 
         if(config.getVicidialUrl() != null)
         {
@@ -50,7 +57,6 @@ public class ConfigActivity extends AppCompatActivity {
 
     public void save(View v)
     {
-       Log.i("guar usuario","testuing...");
        Config config = new Config.ConfigBuilder(
               vicidialUrl.getText().toString(),
               vicidialFolder.getText().toString(),
@@ -59,12 +65,14 @@ public class ConfigActivity extends AppCompatActivity {
         ).id(this.config.getId()).build();
 
         if(config.getId() != 0) {
-            Log.i("guar usuario",config.toString());
             repository.update(config);
+            msj = updated;
         }else {
-            Log.i("guar usuario",config.toString());
             repository.add(config);
+            msj = saved;
         }
+
+        Toast.makeText(this, msj, Toast.LENGTH_SHORT);
 
 
     }
